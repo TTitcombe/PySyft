@@ -2,19 +2,70 @@ r"""
 PySyft is a Python library for secure, private Deep Learning.
 PySyft decouples private data from model training, using Federated Learning,
 Differential Privacy, and Multi-Party Computation (MPC) within PyTorch.
-"""
-# We load these modules first so that syft knows which are available
-from syft import dependency_check
-from syft import frameworks  # Triggers registration of any available frameworks
 
-# Major imports
-from syft.version import __version__
+isort:skip_file
+"""
+import logging
 
 # This import statement is strictly here to trigger registration of syft
 # tensor types inside hook_args.py.
 import syft.frameworks.torch.hook.hook_args
 
-import logging
+# Import serialization tools
+# We load these modules first so that syft knows which are available
+from syft import dependency_check
+from syft import frameworks  # Triggers registration of any available frameworks
+from syft import serde
+from syft.federated.train_config import TrainConfig
+
+# Import federate learning objects
+from syft.frameworks.torch.fl import BaseDataset
+from syft.frameworks.torch.fl import FederatedDataLoader
+from syft.frameworks.torch.fl import FederatedDataset
+
+# import functions
+from syft.frameworks.torch.functions import combine_pointers
+from syft.frameworks.torch.he.paillier import keygen
+
+# Pytorch dependencies
+# Import Hook
+from syft.frameworks.torch.hook.hook import TorchHook
+
+# Import Syft's Public Tensor Types
+from syft.frameworks.torch.tensors.decorators.logging import LoggingTensor
+from syft.frameworks.torch.tensors.interpreters.additive_shared import AdditiveSharingTensor
+from syft.frameworks.torch.tensors.interpreters.autograd import AutogradTensor
+from syft.frameworks.torch.tensors.interpreters.crt_precision import CRTPrecisionTensor
+from syft.frameworks.torch.tensors.interpreters.large_precision import LargePrecisionTensor
+from syft.frameworks.torch.tensors.interpreters.precision import FixedPrecisionTensor
+from syft.frameworks.torch.tensors.interpreters.private import PrivateTensor
+from syft.frameworks.torch.tensors.interpreters.promise import PromiseTensor
+from syft.generic.pointers.multi_pointer import MultiPointerTensor
+from syft.generic.pointers.pointer_plan import PointerPlan
+from syft.generic.pointers.pointer_protocol import PointerProtocol
+from syft.generic.pointers.pointer_tensor import PointerTensor
+
+# Import grids
+from syft.grid import VirtualGrid
+from syft.messaging.plan import Plan
+from syft.messaging.plan import func2plan
+from syft.messaging.plan import method2plan
+from syft.messaging.promise import Promise
+
+# Import messaging objects
+from syft.messaging.protocol import Protocol
+
+# Import sandbox
+from syft.sandbox import create_sandbox
+from syft.sandbox import hook
+
+# Major imports
+from syft.version import __version__
+
+# Import Worker Types
+from syft.workers.virtual import VirtualWorker
+from syft.workers.websocket_client import WebsocketClientWorker
+from syft.workers.websocket_server import WebsocketServerWorker
 
 logger = logging.getLogger(__name__)
 
@@ -34,53 +85,6 @@ if dependency_check.tfe_available:
 else:
     logger.info("TF Encrypted Keras not available.")
     __all__ = []
-
-# Pytorch dependencies
-# Import Hook
-from syft.frameworks.torch.hook.hook import TorchHook
-
-# Import grids
-from syft.grid import VirtualGrid
-
-# Import sandbox
-from syft.sandbox import create_sandbox, hook
-
-# Import federate learning objects
-from syft.frameworks.torch.fl import FederatedDataset, FederatedDataLoader, BaseDataset
-from syft.federated.train_config import TrainConfig
-
-# Import messaging objects
-from syft.messaging.protocol import Protocol
-from syft.messaging.plan import Plan
-from syft.messaging.plan import func2plan
-from syft.messaging.plan import method2plan
-from syft.messaging.promise import Promise
-
-# Import Worker Types
-from syft.workers.virtual import VirtualWorker
-from syft.workers.websocket_client import WebsocketClientWorker
-from syft.workers.websocket_server import WebsocketServerWorker
-
-# Import Syft's Public Tensor Types
-from syft.frameworks.torch.tensors.decorators.logging import LoggingTensor
-from syft.frameworks.torch.tensors.interpreters.additive_shared import AdditiveSharingTensor
-from syft.frameworks.torch.tensors.interpreters.crt_precision import CRTPrecisionTensor
-from syft.frameworks.torch.tensors.interpreters.autograd import AutogradTensor
-from syft.frameworks.torch.tensors.interpreters.precision import FixedPrecisionTensor
-from syft.frameworks.torch.tensors.interpreters.private import PrivateTensor
-from syft.frameworks.torch.tensors.interpreters.large_precision import LargePrecisionTensor
-from syft.frameworks.torch.tensors.interpreters.promise import PromiseTensor
-from syft.generic.pointers.pointer_plan import PointerPlan
-from syft.generic.pointers.pointer_protocol import PointerProtocol
-from syft.generic.pointers.pointer_tensor import PointerTensor
-from syft.generic.pointers.multi_pointer import MultiPointerTensor
-
-# Import serialization tools
-from syft import serde
-
-# import functions
-from syft.frameworks.torch.functions import combine_pointers
-from syft.frameworks.torch.he.paillier import keygen
 
 
 def pool():

@@ -1,11 +1,11 @@
-import syft as sy
-from syft.workers.abstract import AbstractWorker
 import weakref
 
+import syft as sy
+from syft.generic.frameworks.hook import hook_args
 from syft.generic.tensor import AbstractTensor
 from syft.generic.tensor import initialize_tensor
 from syft.messaging.promise import Promise
-from syft.generic.frameworks.hook import hook_args
+from syft.workers.abstract import AbstractWorker
 
 
 class PromiseTensor(AbstractTensor, Promise):

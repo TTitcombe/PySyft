@@ -1,20 +1,17 @@
 import torch
 
-from syft.frameworks.torch.tensors.interpreters.autograd import AutogradTensor
-from syft.frameworks.torch.tensors.decorators.logging import LoggingTensor
-from syft.frameworks.torch.tensors.interpreters.paillier import PaillierTensor
-from syft.frameworks.torch.tensors.interpreters.native import TorchTensor
-from syft.generic.frameworks.hook.hook_args import (
-    get_child,
-    register_ambiguous_method,
-    register_ambiguous_function,
-    register_backward_func,
-    register_forward_func,
-    register_type_rule,
-    one,
-)
-
 from syft.exceptions import PureFrameworkTensorFoundError
+from syft.frameworks.torch.tensors.decorators.logging import LoggingTensor
+from syft.frameworks.torch.tensors.interpreters.autograd import AutogradTensor
+from syft.frameworks.torch.tensors.interpreters.native import TorchTensor
+from syft.frameworks.torch.tensors.interpreters.paillier import PaillierTensor
+from syft.generic.frameworks.hook.hook_args import get_child
+from syft.generic.frameworks.hook.hook_args import one
+from syft.generic.frameworks.hook.hook_args import register_ambiguous_function
+from syft.generic.frameworks.hook.hook_args import register_ambiguous_method
+from syft.generic.frameworks.hook.hook_args import register_backward_func
+from syft.generic.frameworks.hook.hook_args import register_forward_func
+from syft.generic.frameworks.hook.hook_args import register_type_rule
 
 type_rule = {
     torch.Tensor: one,

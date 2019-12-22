@@ -1,17 +1,17 @@
-import syft as sy
+import warnings
+from typing import List
+from typing import Union
 
+import syft as sy
 from syft.exceptions import WorkerNotFoundException
 from syft.generic.frameworks.hook import hook_args
 from syft.generic.frameworks.types import FrameworkTensor
 from syft.generic.object import AbstractObject
-from syft.generic.pointers.pointer_tensor import PointerTensor
 from syft.generic.pointers.pointer_protocol import PointerProtocol
+from syft.generic.pointers.pointer_tensor import PointerTensor
+from syft.messaging.promise import Promise
 from syft.workers.abstract import AbstractWorker
 from syft.workers.base import BaseWorker
-from syft.messaging.promise import Promise
-
-from typing import List, Union
-import warnings
 
 
 class Protocol(AbstractObject):

@@ -1,10 +1,10 @@
 from types import ModuleType
-from typing import Union
-from typing import Callable
 from typing import Any
+from typing import Callable
+from typing import Union
 
-from syft.generic.frameworks.attributes import FrameworkAttributes
 from syft.frameworks.torch.tensors.interpreters.native import TorchTensor
+from syft.generic.frameworks.attributes import FrameworkAttributes
 
 
 class TorchAttributes(FrameworkAttributes):

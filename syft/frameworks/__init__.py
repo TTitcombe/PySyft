@@ -1,4 +1,5 @@
 import logging
+
 from syft import dependency_check
 
 logger = logging.getLogger(__name__)

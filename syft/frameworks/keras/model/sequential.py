@@ -1,5 +1,6 @@
-from collections import defaultdict, OrderedDict
 import inspect
+from collections import OrderedDict
+from collections import defaultdict
 
 import tensorflow as tf
 import tf_encrypted as tfe

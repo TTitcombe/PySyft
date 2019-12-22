@@ -5,15 +5,13 @@ for all native python objects.
 from collections import OrderedDict
 from typing import Collection
 from typing import Dict
-from typing import Union
 from typing import Tuple
-
+from typing import Union
 
 import numpy
 
-from syft.workers.abstract import AbstractWorker
 from syft.serde.msgpack import serde
-
+from syft.workers.abstract import AbstractWorker
 
 # Simplify/Detail Collections (list, set, tuple, etc.)
 

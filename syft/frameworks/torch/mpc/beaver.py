@@ -1,4 +1,5 @@
 from typing import Callable
+
 import torch
 
 from syft.workers.abstract import AbstractWorker

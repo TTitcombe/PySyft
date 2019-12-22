@@ -1,15 +1,13 @@
-import torch
-import syft
-
 from typing import List
 from typing import Union
 
+import torch
+
+import syft
 from syft.generic.frameworks.hook import hook_args
 from syft.generic.frameworks.overload import overloaded
-
-
-from syft.workers.abstract import AbstractWorker
 from syft.generic.tensor import AbstractTensor
+from syft.workers.abstract import AbstractWorker
 
 
 class PrivateTensor(AbstractTensor):

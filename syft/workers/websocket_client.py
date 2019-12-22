@@ -1,18 +1,18 @@
 import binascii
-from typing import Union
+import logging
+import ssl
+import time
 from typing import List
+from typing import Union
 
 import torch
 import websocket
 import websockets
-import logging
-import ssl
-import time
 
 import syft as sy
+from syft.generic.tensor import AbstractTensor
 from syft.messaging.message import ObjectRequestMessage
 from syft.messaging.message import SearchMessage
-from syft.generic.tensor import AbstractTensor
 from syft.workers.base import BaseWorker
 
 logger = logging.getLogger(__name__)

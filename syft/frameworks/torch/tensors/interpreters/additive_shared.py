@@ -1,12 +1,13 @@
 import math
+
 import torch
 
 import syft as sy
-from syft.frameworks.torch.mpc import spdz
 from syft.frameworks.torch.mpc import securenn
-from syft.generic.tensor import AbstractTensor
+from syft.frameworks.torch.mpc import spdz
 from syft.generic.frameworks.hook import hook_args
 from syft.generic.frameworks.overload import overloaded
+from syft.generic.tensor import AbstractTensor
 from syft.workers.abstract import AbstractWorker
 
 no_wrap = {"no_wrap": True}

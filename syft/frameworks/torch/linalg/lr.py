@@ -4,12 +4,11 @@ from typing import List
 import numpy as np
 import torch
 
-from syft.workers.base import BaseWorker
+from syft.exceptions import DependencyError
 from syft.frameworks.torch.linalg.operations import inv_sym
 from syft.frameworks.torch.linalg.operations import qr
 from syft.generic.pointers.pointer_tensor import PointerTensor
-
-from syft.exceptions import DependencyError
+from syft.workers.base import BaseWorker
 
 try:
     from scipy.stats import t

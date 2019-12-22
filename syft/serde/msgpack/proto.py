@@ -10,10 +10,10 @@ contents of `proto.json` file in `proto_info` variable.
 IMPORTANT: New types added in Serde need to be also defined in `proto.json`.
 """
 
-from syft_proto import proto_info
 from syft.exceptions import InvalidProtocolFileError
 from syft.exceptions import UndefinedProtocolTypeError
 from syft.exceptions import UndefinedProtocolTypePropertyError
+from syft_proto import proto_info
 
 if proto_info is None:
     raise InvalidProtocolFileError("Failed to load syft protocol data")

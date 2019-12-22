@@ -1,21 +1,20 @@
+import weakref
+from typing import TYPE_CHECKING
 from typing import List
 from typing import Union
-from typing import TYPE_CHECKING
-import weakref
 
 import syft
 from syft import exceptions
-from syft.generic.frameworks.hook.hook_args import one
-from syft.generic.frameworks.hook.hook_args import register_type_rule
-from syft.generic.frameworks.hook.hook_args import register_forward_func
-from syft.generic.frameworks.hook.hook_args import register_backward_func
+from syft.exceptions import RemoteObjectFoundError
 from syft.generic.frameworks.hook import hook_args
+from syft.generic.frameworks.hook.hook_args import one
+from syft.generic.frameworks.hook.hook_args import register_backward_func
+from syft.generic.frameworks.hook.hook_args import register_forward_func
+from syft.generic.frameworks.hook.hook_args import register_type_rule
 from syft.generic.frameworks.types import FrameworkTensor
 from syft.generic.object import AbstractObject
 from syft.messaging.message import ForceObjectDeleteMessage
 from syft.workers.abstract import AbstractWorker
-
-from syft.exceptions import RemoteObjectFoundError
 
 # this if statement avoids circular imports between base.py and pointer.py
 if TYPE_CHECKING:

@@ -1,5 +1,5 @@
-from syft.workers.base import BaseWorker
 from syft.federated.federated_client import FederatedClient
+from syft.workers.base import BaseWorker
 
 
 class VirtualWorker(BaseWorker, FederatedClient):

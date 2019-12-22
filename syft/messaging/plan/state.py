@@ -1,7 +1,7 @@
+from typing import Dict
 from typing import List
 from typing import Tuple
 from typing import Union
-from typing import Dict
 
 import torch
 

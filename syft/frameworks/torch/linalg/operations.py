@@ -1,8 +1,8 @@
 import torch
 
 import syft as sy
-from syft.generic.pointers.pointer_tensor import PointerTensor
 from syft.frameworks.torch.tensors.interpreters.additive_shared import AdditiveSharingTensor
+from syft.generic.pointers.pointer_tensor import PointerTensor
 
 
 def inv_sym(t):

@@ -2,11 +2,10 @@ import importlib
 
 import torch
 
-from syft.frameworks.torch.hook.hook import TorchHook
-from syft.workers.virtual import VirtualWorker
-from syft.grid import VirtualGrid
-
 from syft.exceptions import DependencyError
+from syft.frameworks.torch.hook.hook import TorchHook
+from syft.grid import VirtualGrid
+from syft.workers.virtual import VirtualWorker
 
 
 def create_sandbox(gbs, verbose=True, download_data=True):

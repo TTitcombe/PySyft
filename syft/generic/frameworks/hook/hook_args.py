@@ -6,11 +6,9 @@ from typing import Tuple
 import numpy as np
 import torch as th
 
+from syft import exceptions
 from syft.generic.frameworks.types import FrameworkTensorType
 from syft.workers.abstract import AbstractWorker
-
-from syft import exceptions
-
 
 hook_method_args_functions = {}
 hook_method_response_functions = {}

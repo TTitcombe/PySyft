@@ -1,10 +1,10 @@
 import tf_encrypted as tfe
 
+from syft.frameworks.keras.layers import add_constructor_registration
+from syft.frameworks.keras.layers import filter_layers
 from syft.frameworks.keras.model import serve
 from syft.frameworks.keras.model import share
 from syft.frameworks.keras.model import stop
-from syft.frameworks.keras.layers import add_constructor_registration
-from syft.frameworks.keras.layers import filter_layers
 
 
 class KerasHook:

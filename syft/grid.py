@@ -1,8 +1,8 @@
 from collections import Counter
 from typing import Any
-from typing import Tuple
 from typing import Counter as CounterType
 from typing import Dict
+from typing import Tuple
 from typing import Union
 
 

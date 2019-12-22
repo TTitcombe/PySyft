@@ -1,8 +1,9 @@
 """Specific Pysyft exceptions."""
-from tblib import Traceback
 import traceback
-from six import reraise
 from typing import Tuple
+
+from six import reraise
+from tblib import Traceback
 
 import syft as sy
 from syft.generic.frameworks.types import FrameworkTensor

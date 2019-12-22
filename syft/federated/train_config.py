@@ -1,5 +1,5 @@
-from typing import Union
 import weakref
+from typing import Union
 
 import torch
 

@@ -3,10 +3,10 @@ receive an object with a certain ID. This object will also contain a set of
 Plan objects which will be executed when the promise is kept (assuming
 the plan has all of the inputs it requires). """
 
-import syft as sy
-
 from abc import ABC
 from abc import abstractmethod
+
+import syft as sy
 from syft.workers.abstract import AbstractWorker
 
 

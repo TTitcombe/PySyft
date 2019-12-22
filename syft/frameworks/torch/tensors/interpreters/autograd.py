@@ -1,11 +1,13 @@
 from functools import wraps
+
 import torch
 
 import syft
-from syft.generic.tensor import AbstractTensor
 from syft.generic.frameworks.hook import hook_args
 from syft.generic.frameworks.overload import overloaded
+from syft.generic.tensor import AbstractTensor
 from syft.workers.abstract import AbstractWorker
+
 from . import gradients
 
 

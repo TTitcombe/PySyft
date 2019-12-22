@@ -2,22 +2,23 @@
 This file exists to provide one common place for all serialisation and simplify_ and _detail
 for all tensors (Torch and Numpy).
 """
-from collections import OrderedDict
 import io
-from tempfile import TemporaryFile
-from typing import Tuple, List
 import warnings
+from collections import OrderedDict
+from tempfile import TemporaryFile
+from typing import List
+from typing import Tuple
 
 import numpy
 import torch
 
 import syft
-from syft.generic.pointers.pointer_tensor import PointerTensor
-from syft.generic.tensor import initialize_tensor
-from syft.generic.tensor import AbstractTensor
-from syft.workers.abstract import AbstractWorker
-from syft.serde.msgpack import serde
 from syft.codes import TENSOR_SERIALIZATION
+from syft.generic.pointers.pointer_tensor import PointerTensor
+from syft.generic.tensor import AbstractTensor
+from syft.generic.tensor import initialize_tensor
+from syft.serde.msgpack import serde
+from syft.workers.abstract import AbstractWorker
 
 # Torch dtypes to string (and back) mappers
 TORCH_DTYPE_STR = {

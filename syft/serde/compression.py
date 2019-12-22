@@ -1,13 +1,15 @@
 """
 This file exists to provide one common place for all compression methods used in
 simplifying and serializing PySyft objects.
+
+isort:skip_file
 """
 
 import lz4
-from lz4 import (  # noqa: F401
-    frame,
-)  # needed as otherwise we will get: module 'lz4' has no attribute 'frame'
 import zstd
+from lz4 import (
+    frame,
+)  # noqa: F401; needed as otherwise we will get: module 'lz4' has no attribute 'frame',,
 
 from syft.exceptions import CompressionNotFoundException
 

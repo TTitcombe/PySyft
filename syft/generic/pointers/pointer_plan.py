@@ -3,8 +3,8 @@ from typing import Union
 
 import syft as sy
 from syft.generic.frameworks.hook import hook_args
-from syft.generic.pointers.object_pointer import ObjectPointer
 from syft.generic.frameworks.types import FrameworkTensor
+from syft.generic.pointers.object_pointer import ObjectPointer
 from syft.messaging.message import ForceObjectDeleteMessage
 from syft.workers.abstract import AbstractWorker
 

@@ -1,9 +1,9 @@
 from abc import ABC
 from abc import abstractmethod
 from types import ModuleType
-from typing import Union
-from typing import Callable
 from typing import Any
+from typing import Callable
+from typing import Union
 
 from syft.generic.frameworks.hook.hook import FrameworkHook
 

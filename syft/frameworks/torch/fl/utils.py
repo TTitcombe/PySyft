@@ -1,7 +1,9 @@
-import syft as sy
-import torch
-from typing import List
 import logging
+from typing import List
+
+import torch
+
+import syft as sy
 
 logger = logging.getLogger(__name__)
 

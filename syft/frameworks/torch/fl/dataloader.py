@@ -1,9 +1,13 @@
-import torch
-from torch.utils.data import SequentialSampler, RandomSampler, BatchSampler
-from torch._six import string_classes, int_classes, container_abcs
-
 import logging
 import math
+
+import torch
+from torch._six import container_abcs
+from torch._six import int_classes
+from torch._six import string_classes
+from torch.utils.data import BatchSampler
+from torch.utils.data import RandomSampler
+from torch.utils.data import SequentialSampler
 
 numpy_type_map = {
     "float64": torch.DoubleTensor,

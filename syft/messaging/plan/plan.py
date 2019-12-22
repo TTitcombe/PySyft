@@ -3,8 +3,9 @@ from typing import Tuple
 from typing import Union
 
 import syft as sy
-from syft.generic.frameworks.types import FrameworkTensor
+from syft.frameworks.torch.tensors.interpreters.promise import PromiseTensor
 from syft.generic.frameworks.types import FrameworkLayerModule
+from syft.generic.frameworks.types import FrameworkTensor
 from syft.generic.object import AbstractObject
 from syft.generic.object_storage import ObjectStorage
 from syft.generic.pointers.pointer_plan import PointerPlan
@@ -12,7 +13,6 @@ from syft.messaging.message import Operation
 from syft.messaging.plan.procedure import Procedure
 from syft.messaging.plan.state import State
 from syft.workers.abstract import AbstractWorker
-from syft.frameworks.torch.tensors.interpreters.promise import PromiseTensor
 
 
 class func2plan(object):

@@ -4,20 +4,19 @@ import logging
 import socket
 import ssl
 import sys
-from typing import Union
 from typing import List
+from typing import Union
 
 import tblib.pickling_support
 import torch
 import websockets
 
 import syft as sy
+from syft.exceptions import GetNotPermittedError
+from syft.exceptions import ResponseSignatureError
 from syft.federated.federated_client import FederatedClient
 from syft.generic.tensor import AbstractTensor
 from syft.workers.virtual import VirtualWorker
-
-from syft.exceptions import GetNotPermittedError
-from syft.exceptions import ResponseSignatureError
 
 tblib.pickling_support.install()
 

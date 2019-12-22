@@ -1,13 +1,12 @@
-import numpy as np
 import math
+
+import numpy as np
 import torch
 
-from syft.generic.frameworks.hook.hook_args import (
-    register_type_rule,
-    register_forward_func,
-    register_backward_func,
-    one,
-)
+from syft.generic.frameworks.hook.hook_args import one
+from syft.generic.frameworks.hook.hook_args import register_backward_func
+from syft.generic.frameworks.hook.hook_args import register_forward_func
+from syft.generic.frameworks.hook.hook_args import register_type_rule
 from syft.generic.frameworks.overload import overloaded
 from syft.generic.tensor import AbstractTensor
 

@@ -1,9 +1,8 @@
-import syft
-from syft.generic.tensor import AbstractTensor
+import syft as sy
 from syft.generic.frameworks.hook import hook_args
 from syft.generic.frameworks.overload import overloaded
+from syft.generic.tensor import AbstractTensor
 from syft.workers.abstract import AbstractWorker
-import syft as sy
 
 
 class LoggingTensor(AbstractTensor):

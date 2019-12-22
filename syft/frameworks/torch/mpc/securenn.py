@@ -6,8 +6,8 @@ Note that there is a difference here in that our shares can be
 negative numbers while they are always positive in the paper
 """
 import torch
-import syft as sy
 
+import syft as sy
 
 # p is introduced in the SecureNN paper https://eprint.iacr.org/2018/442.pdf
 # it is a small field for efficient additive sharing

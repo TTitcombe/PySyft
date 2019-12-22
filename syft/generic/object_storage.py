@@ -1,10 +1,9 @@
 from typing import List
 from typing import Union
 
+from syft.exceptions import ObjectNotFoundError
 from syft.generic.frameworks.types import FrameworkTensorType
 from syft.generic.tensor import AbstractTensor
-
-from syft.exceptions import ObjectNotFoundError
 
 
 class ObjectStorage:

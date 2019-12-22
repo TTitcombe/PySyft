@@ -1,12 +1,11 @@
 """To be extended in the near future."""
-from collections import OrderedDict
 import logging
 import os
 import subprocess
 import tempfile
+from collections import OrderedDict
 
 import tf_encrypted as tfe
-
 
 logger = logging.getLogger("tf_encrypted")
 _TMP_DIR = tempfile.gettempdir()
@@ -73,7 +72,7 @@ class TFEWorker:
     def connect_to_model(self, input_shape, output_shape, cluster, sess=None):
         """
         Connect to a TF Encrypted model being served by the given cluster.
-        
+
         This must be done before querying the model.
         """
 
@@ -96,7 +95,7 @@ class TFEWorker:
     def query_model(self, data):
         """
         Encrypt data and sent it as input to the model being served.
-        
+
         This will block until a result is ready, and requires that
         a connection to the model has already been established via
         `connect_to_model()`.
@@ -108,7 +107,7 @@ class TFEWorker:
         """
         Asynchronous version of `query_model` that will not block until a
         result is ready. Call `query_model_join` to retrive result.
-        
+
         This requires that a connection to the model has already been
         established via `connect_to_model()`.
         """

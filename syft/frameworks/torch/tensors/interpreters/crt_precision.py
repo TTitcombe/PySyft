@@ -1,12 +1,13 @@
-import torch
-import math
-import numpy as np
 import itertools
+import math
+
+import numpy as np
+import torch
 
 import syft
 from syft.frameworks.torch.tensors.interpreters.precision import FixedPrecisionTensor
-from syft.generic.frameworks.overload import overloaded
 from syft.generic.frameworks.hook.hook_args import default_register_tensor
+from syft.generic.frameworks.overload import overloaded
 from syft.generic.tensor import AbstractTensor
 from syft.workers.abstract import AbstractWorker
 

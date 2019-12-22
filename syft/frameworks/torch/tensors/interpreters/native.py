@@ -1,26 +1,25 @@
 import math
-from typing import List
-from typing import Union
 import warnings
 import weakref
+from typing import List
+from typing import Union
 
 import numpy as np
 import torch
 
 import syft
+from syft.exceptions import InvalidTensorForRemoteGet
+from syft.exceptions import PureFrameworkTensorFoundError
+from syft.exceptions import SendNotPermittedError
+from syft.frameworks.torch.tensors.interpreters.crt_precision import _moduli_for_fields
+from syft.frameworks.torch.tensors.interpreters.paillier import PaillierTensor
+from syft.frameworks.torch.tensors.interpreters.promise import PromiseTensor
 from syft.generic.frameworks.hook import hook_args
 from syft.generic.frameworks.overload import overloaded
-from syft.frameworks.torch.tensors.interpreters.crt_precision import _moduli_for_fields
-from syft.frameworks.torch.tensors.interpreters.promise import PromiseTensor
-from syft.frameworks.torch.tensors.interpreters.paillier import PaillierTensor
 from syft.generic.frameworks.types import FrameworkTensor
-from syft.generic.tensor import AbstractTensor
 from syft.generic.pointers.pointer_tensor import PointerTensor
+from syft.generic.tensor import AbstractTensor
 from syft.workers.base import BaseWorker
-
-from syft.exceptions import PureFrameworkTensorFoundError
-from syft.exceptions import InvalidTensorForRemoteGet
-from syft.exceptions import SendNotPermittedError
 
 
 def _get_maximum_precision():
@@ -387,7 +386,7 @@ class TorchTensor(AbstractTensor):
         Returns:
             A torch.Tensor[PointerTensor] pointer to self. Note that this
             object will likely be wrapped by a torch.Tensor wrapper.
-        
+
         Raises:
                 SendNotPermittedError: Raised if send is not permitted on this tensor.
         """
@@ -613,10 +612,10 @@ class TorchTensor(AbstractTensor):
 
     def allow(self, user=None) -> bool:
         """ This function returns will return True if it isn't a PrivateTensor, otherwise it will return the result of PrivateTensor's allow method.
-            
+
             Args:
                 user (object,optional): User crendentials to be verified.
-            
+
             Returns:
                 boolean: If it is a public tensor/ allowed user, returns true, otherwise it returns false.
         """

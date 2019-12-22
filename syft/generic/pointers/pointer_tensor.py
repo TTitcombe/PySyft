@@ -2,17 +2,16 @@ from typing import List
 from typing import Union
 
 import syft
+from syft.exceptions import RemoteObjectFoundError
 from syft.generic.frameworks.hook.hook_args import one
-from syft.generic.frameworks.hook.hook_args import register_type_rule
-from syft.generic.frameworks.hook.hook_args import register_forward_func
 from syft.generic.frameworks.hook.hook_args import register_backward_func
+from syft.generic.frameworks.hook.hook_args import register_forward_func
+from syft.generic.frameworks.hook.hook_args import register_type_rule
 from syft.generic.frameworks.types import FrameworkShapeType
 from syft.generic.frameworks.types import FrameworkTensor
-from syft.generic.tensor import AbstractTensor
 from syft.generic.pointers.object_pointer import ObjectPointer
+from syft.generic.tensor import AbstractTensor
 from syft.workers.abstract import AbstractWorker
-
-from syft.exceptions import RemoteObjectFoundError
 
 
 class PointerTensor(ObjectPointer, AbstractTensor):

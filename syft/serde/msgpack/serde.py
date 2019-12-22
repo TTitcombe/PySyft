@@ -30,49 +30,48 @@ serialization process, it can override the functions _serialize_tensor and _dese
 By default, we serialize using msgpack and compress using lz4.
 If different compressions are required, the worker can override the function apply_compress_scheme
 """
+import inspect
 from collections import OrderedDict
 from typing import Callable
 
-import inspect
 import msgpack as msgpack_lib
 
 import syft
 from syft import dependency_check
-
+from syft.exceptions import GetNotPermittedError
+from syft.exceptions import ResponseSignatureError
 from syft.federated.train_config import TrainConfig
 from syft.frameworks.torch.tensors.decorators.logging import LoggingTensor
+from syft.frameworks.torch.tensors.interpreters.additive_shared import AdditiveSharingTensor
+from syft.frameworks.torch.tensors.interpreters.autograd import AutogradTensor
+from syft.frameworks.torch.tensors.interpreters.crt_precision import CRTPrecisionTensor
 from syft.frameworks.torch.tensors.interpreters.precision import FixedPrecisionTensor
 from syft.frameworks.torch.tensors.interpreters.private import PrivateTensor
-from syft.frameworks.torch.tensors.interpreters.additive_shared import AdditiveSharingTensor
-from syft.frameworks.torch.tensors.interpreters.crt_precision import CRTPrecisionTensor
-from syft.frameworks.torch.tensors.interpreters.autograd import AutogradTensor
 from syft.frameworks.torch.tensors.interpreters.promise import PromiseTensor
 from syft.generic.pointers.multi_pointer import MultiPointerTensor
 from syft.generic.pointers.object_pointer import ObjectPointer
-from syft.generic.pointers.pointer_tensor import PointerTensor
+from syft.generic.pointers.object_wrapper import ObjectWrapper
 from syft.generic.pointers.pointer_plan import PointerPlan
 from syft.generic.pointers.pointer_protocol import PointerProtocol
-from syft.generic.pointers.object_wrapper import ObjectWrapper
-from syft.messaging.plan import Plan
-from syft.messaging.plan.state import State
-from syft.messaging.plan.procedure import Procedure
-from syft.messaging.protocol import Protocol
+from syft.generic.pointers.pointer_tensor import PointerTensor
+from syft.messaging.message import ForceObjectDeleteMessage
+from syft.messaging.message import GetShapeMessage
+from syft.messaging.message import IsNoneMessage
 from syft.messaging.message import Message
-from syft.messaging.message import Operation
 from syft.messaging.message import ObjectMessage
 from syft.messaging.message import ObjectRequestMessage
-from syft.messaging.message import IsNoneMessage
-from syft.messaging.message import GetShapeMessage
-from syft.messaging.message import ForceObjectDeleteMessage
-from syft.messaging.message import SearchMessage
+from syft.messaging.message import Operation
 from syft.messaging.message import PlanCommandMessage
+from syft.messaging.message import SearchMessage
+from syft.messaging.plan import Plan
+from syft.messaging.plan.procedure import Procedure
+from syft.messaging.plan.state import State
+from syft.messaging.protocol import Protocol
 from syft.serde import compression
 from syft.serde.msgpack.native_serde import MAP_NATIVE_SIMPLIFIERS_AND_DETAILERS
+from syft.serde.msgpack.proto import proto_type_info
 from syft.workers.abstract import AbstractWorker
 from syft.workers.base import BaseWorker
-
-from syft.exceptions import GetNotPermittedError
-from syft.exceptions import ResponseSignatureError
 
 if dependency_check.torch_available:
     from syft.serde.msgpack.torch_serde import MAP_TORCH_SIMPLIFIERS_AND_DETAILERS
@@ -84,7 +83,6 @@ if dependency_check.tensorflow_available:
 else:
     MAP_TF_SIMPLIFIERS_AND_DETAILERS = {}
 
-from syft.serde.msgpack.proto import proto_type_info
 
 # Maps a type to a tuple containing its simplifier and detailer function
 # NOTE: serialization constants for these objects need to be defined in `proto.json` file
