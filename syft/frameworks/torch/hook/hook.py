@@ -104,7 +104,7 @@ class TorchHook(FrameworkHook):
         self.local_worker = local_worker
 
         if hasattr(torch, "torch_hooked"):
-            logging.warning("Torch was already hooked... skipping hooking process")
+            logging.warning(f"Torch was already hooked... skipping hooking process")
             self.local_worker = syft.local_worker
             return
         else:

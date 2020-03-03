@@ -175,7 +175,7 @@ class WebsocketServerWorker(VirtualWorker, FederatedClient):
         try:
             asyncio.get_event_loop().run_forever()
         except KeyboardInterrupt:
-            logging.info("Websocket server stopped.")
+            logging.info(f"Websocket server stopped.")
 
     def list_objects(self, *args):
         return str(self._objects)
