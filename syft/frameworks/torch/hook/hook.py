@@ -810,7 +810,7 @@ class TorchHook(FrameworkHook):
                     return p.location
             except AttributeError:
                 raise AttributeError(
-                    "Module has no attribute location, did you already send it to some location?"
+                    f"Module has no attribute location, did you already send it to some location?"
                 )
 
         self.torch.nn.Module.location = location

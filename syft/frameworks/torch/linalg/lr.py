@@ -203,28 +203,28 @@ class EncryptedLinearRegression:
             # Check wrapper
             if not (x.has_child() and y.has_child()):
                 raise TypeError(
-                    "Some tensors are not wrapped, please provide a wrapped Pointer Tensor"
+                    f"Some tensors are not wrapped, please provide a wrapped Pointer Tensor"
                 )
 
             # Check if x and y are pointers
             if not (isinstance(x.child, PointerTensor) and isinstance(y.child, PointerTensor)):
                 raise TypeError(
-                    "Some tensors are not pointers, please provided a wrapped Pointer Tensor"
+                    f"Some tensors are not pointers, please provided a wrapped Pointer Tensor"
                 )
 
             # Check if both are in the same worker
             if not x.child.location == y.child.location:
-                raise RuntimeError("Some pairs (X, y) are not located in the same worker")
+                raise RuntimeError(f"Some pairs (X, y) are not located in the same worker")
 
             # Check if they have the same size
             x_size += x.shape[0]
             y_size += y.shape[0]
             if x_size != y_size:
-                raise ValueError("Some pairs (X, y) do not have the same number of samples")
+                raise ValueError(f"Some pairs (X, y) do not have the same number of samples")
 
             # Check if all tensors have the same number of features
             if x.shape[1] != self.n_features:
-                raise ValueError("Tensors do not have the same number of features")
+                raise ValueError(f"Tensors do not have the same number of features")
 
         # Set total size
         self.total_size = x_size
@@ -430,24 +430,24 @@ class DASH:
 
             # Check if both are in the same worker
             if not (x.child.location == c.child.location and x.child.location == y.child.location):
-                raise RuntimeError("Some tuples (X, C, y) are not located in the same worker")
+                raise RuntimeError(f"Some tuples (X, C, y) are not located in the same worker")
 
             # Check if they have the same size
             x_size += x.shape[0]
             c_size += c.shape[0]
             y_size += y.shape[0]
             if x_size != c_size or x_size != y_size:
-                raise ValueError("Some tuples (X, C, y) do not have the same number of samples")
+                raise ValueError(f"Some tuples (X, C, y) do not have the same number of samples")
 
             # Check if all tensors have the same number of features
             if x.shape[1] != self.n_features:
                 raise ValueError(
-                    "Transient covariate vectors do not have the same number of features"
+                    f"Transient covariate vectors do not have the same number of features"
                 )
 
             if c.shape[1] != self.n_permanent:
                 raise ValueError(
-                    "Permanent covariate vectors do not have the same number of features"
+                    f"Permanent covariate vectors do not have the same number of features"
                 )
 
         # Set total size

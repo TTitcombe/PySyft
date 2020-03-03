@@ -66,7 +66,7 @@ class BaseDataset:
 
         else:
 
-            raise TypeError("Transforms can be applied only on torch tensors")
+            raise TypeError(f"Transforms can be applied only on torch tensors")
 
     def send(self, worker):
         """

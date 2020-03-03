@@ -249,7 +249,7 @@ class Protocol(AbstractObject):
             elif isinstance(plan, sy.PointerPlan):
                 plan_id = plan.id_at_location
             else:
-                raise TypeError("This is not a valid Plan")
+                raise TypeError(f"This is not a valid Plan")
 
             if isinstance(worker, str):
                 worker_id = worker

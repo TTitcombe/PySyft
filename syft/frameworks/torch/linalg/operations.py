@@ -99,9 +99,9 @@ def qr(t, mode="reduced", norm_factor=None):
         t_type = "ast"
         if norm_factor is None:
             raise ValueError(
-                "You are trying to perform QR decompostion on an ",
-                "AdditiveSharingTensor, please provide a value for the ",
-                "norm_factor argument.",
+                f"You are trying to perform QR decompostion on an ",
+                f"AdditiveSharingTensor, please provide a value for the ",
+                f"norm_factor argument.",
             )
         workers = t.child.child.locations
         crypto_prov = t.child.child.crypto_provider
@@ -110,8 +110,8 @@ def qr(t, mode="reduced", norm_factor=None):
         t_type = "local"
     else:
         raise TypeError(
-            "The provided matrix should be a local torch.Tensor, a PointerTensor, ",
-            "or an AdditiveSharedTensor",
+            f"The provided matrix should be a local torch.Tensor, a PointerTensor, ",
+            f"or an AdditiveSharedTensor",
         )
 
     # Check if t is 2-dim
@@ -119,7 +119,7 @@ def qr(t, mode="reduced", norm_factor=None):
 
     if mode not in ["reduced", "complete", "r"]:
         raise ValueError(
-            "mode should have one of the values in the list:" + str(["reduced", "complete", "r"])
+            f"mode should have one of the values in the list: ['reduced', 'complete', 'r']"
         )
 
     ######## QR decomposition via Householder Reflection #########

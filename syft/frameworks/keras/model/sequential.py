@@ -90,7 +90,7 @@ def stop(model):
 def _configure_tfe(cluster):
 
     if not cluster or len(cluster.workers) != 3:
-        raise RuntimeError("TF Encrypted expects three parties for its sharing protocols.")
+        raise RuntimeError(f"TF Encrypted expects three parties for its sharing protocols.")
 
     config = cluster.tfe_config
     tfe.set_config(config)
@@ -137,9 +137,7 @@ def _instantiate_tfe_layer(keras_layer, stored_keras_weights):
     except AttributeError:
         # TODO: rethink how we warn the user about this, maybe codegen a list of
         #       supported layers in a doc somewhere
-        raise RuntimeError(
-            "TF Encrypted does not yet support the " "{lcls} layer.".format(lcls=keras_layer_type)
-        )
+        raise RuntimeError(f"TF Encrypted does not yet support the {keras_layer_type} layer.")
 
     # Extract argument list expected by layer __init__
     # TODO[jason]: find a better way

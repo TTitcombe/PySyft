@@ -276,7 +276,7 @@ class AdditiveSharingTensor(AbstractTensor):
                 elif isinstance(index, dict):
                     indices.append(index[worker])
                 else:
-                    raise NotImplementedError("Index type", type(indices), "not supported")
+                    raise NotImplementedError(f"Index type {type(indices)} not supported")
             selected_share = share[tuple(indices)]
             selected_shares[worker] = selected_share
 
@@ -427,7 +427,7 @@ class AdditiveSharingTensor(AbstractTensor):
         assert len(self.child) == len(other.child)
 
         if self.crypto_provider is None:
-            raise AttributeError("For multiplication a crypto_provider must be passed.")
+            raise AttributeError(f"For multiplication a crypto_provider must be passed.")
 
         shares = spdz.spdz_mul(cmd, self, other, self.crypto_provider, self.field)
 

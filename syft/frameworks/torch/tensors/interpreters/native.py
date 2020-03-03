@@ -387,7 +387,7 @@ class TorchTensor(AbstractTensor):
         Returns:
             A torch.Tensor[PointerTensor] pointer to self. Note that this
             object will likely be wrapped by a torch.Tensor wrapper.
-        
+
         Raises:
                 SendNotPermittedError: Raised if send is not permitted on this tensor.
         """
@@ -441,7 +441,7 @@ class TorchTensor(AbstractTensor):
                     output = self
                 else:
                     if no_wrap:
-                        raise ValueError("Parameters can't accept no_wrap=True")
+                        raise ValueError(f"Parameters can't accept no_wrap=True")
                     wrapper = torch.Tensor()
                     param_wrapper = torch.nn.Parameter(wrapper)
                     param_wrapper.is_wrapper = True
@@ -501,7 +501,9 @@ class TorchTensor(AbstractTensor):
         :return:
         """
         if len(location) > 1:
-            raise NotImplementedError("Inplace send to several workers is currently not supported.")
+            raise NotImplementedError(
+                f"Inplace send to several workers is currently not supported."
+            )
 
         return self.send(*location, inplace=True, **kwargs)
 
@@ -613,10 +615,10 @@ class TorchTensor(AbstractTensor):
 
     def allow(self, user=None) -> bool:
         """ This function returns will return True if it isn't a PrivateTensor, otherwise it will return the result of PrivateTensor's allow method.
-            
+
             Args:
                 user (object,optional): User crendentials to be verified.
-            
+
             Returns:
                 boolean: If it is a public tensor/ allowed user, returns true, otherwise it returns false.
         """

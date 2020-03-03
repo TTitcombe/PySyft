@@ -142,7 +142,7 @@ class Plan(AbstractObject, ObjectStorage):
         mapped_shapes = []
         for shape in args_shape:
             if list(filter(lambda x: x < -1, shape)):
-                raise ValueError("Invalid shape {}".format(shape))
+                raise ValueError(f"Invalid shape {shape}")
             mapped_shapes.append(tuple(map(lambda y: 1 if y == -1 else y, shape)))
 
         return [sy.framework.hook.create_zeros(shape) for shape in mapped_shapes]
@@ -153,7 +153,7 @@ class Plan(AbstractObject, ObjectStorage):
 
     @property
     def location(self):
-        raise AttributeError("Plan has no attribute location")
+        raise AttributeError(f"Plan has no attribute location")
 
     # For backward compatibility
     @property
@@ -311,7 +311,7 @@ class Plan(AbstractObject, ObjectStorage):
             else the None message serialized.
         """
         if len(kwargs):
-            raise ValueError("Kwargs are not supported for plan.")
+            raise ValueError(f"Kwargs are not supported for plan.")
 
         result_ids = [sy.ID_PROVIDER.pop()]
 
@@ -403,7 +403,7 @@ class Plan(AbstractObject, ObjectStorage):
             force: A boolean indicating if this operation should be forced.
         """
         if not self.is_built and not force:
-            raise RuntimeError("A plan needs to be built before being sent to a worker.")
+            raise RuntimeError(f"A plan needs to be built before being sent to a worker.")
 
         if len(locations) == 1:
             location = locations[0]
