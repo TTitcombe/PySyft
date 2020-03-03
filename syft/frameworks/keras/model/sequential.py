@@ -69,7 +69,7 @@ def serve(model, num_requests=5):
 
     def step_fn():
         global request_ix
-        print("Served encrypted prediction {i} to client.".format(i=request_ix))
+        print(f"Served encrypted prediction {request_ix} to client.")
         request_ix += 1
 
     model._queue_server.run(model._tfe_session, num_steps=num_requests, step_fn=step_fn)

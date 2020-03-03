@@ -155,7 +155,7 @@ class Protocol(AbstractObject):
                     f"local arguments or pointers to {location.id}."
                 )
 
-            print("send remote run request to", self.location.id)
+            print(f"send remote run request to {self.location.id}")
             response = self.request_remote_run(location, args, kwargs)
             return response
 
@@ -165,10 +165,10 @@ class Protocol(AbstractObject):
         for worker, plan in self.plans:
             # Transmit the args to the next worker if it's a different one % the previous
             if None is not previous_worker_id != worker.id:
-                print("move", previous_worker_id, " -> ", worker.id)
+                print(f"move {previous_worker_id} -> {worker.id}")
                 args = [arg.move(worker) for arg in args]
             else:
-                print("send", worker.id)
+                print(f"send {worker.id}")
                 args = [arg.send(worker) for arg in args]
 
             previous_worker_id = worker.id

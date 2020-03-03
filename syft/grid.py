@@ -43,7 +43,7 @@ class VirtualGrid:
 
         if verbose:
             print(f"\nFound {str(result_counter)} results in total.")
-            print("\nTag Profile:")
+            print(f"\nTag Profile:")
             for tag, count in tag_counter.most_common():
                 print(f"\t {tag} found {str(count)}")
 

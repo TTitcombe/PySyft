@@ -29,7 +29,7 @@ class LoggingTensor(AbstractTensor):
 
         Note the subtlety between self and _self: you should use _self and NOT self.
         """
-        print("Log method add")
+        print(f"Log method add")
         response = getattr(_self, "add")(*args, **kwargs)
 
         return response
@@ -45,7 +45,7 @@ class LoggingTensor(AbstractTensor):
             "add", self, args, kwargs
         )
 
-        print("Log method manual_add")
+        print(f"Log method manual_add")
         # Send it to the appropriate class and get the response
         response = getattr(new_self, "add")(*new_args, **new_kwargs)
 
@@ -80,7 +80,7 @@ class LoggingTensor(AbstractTensor):
             Tensors, so compared to the @overloaded.method, you see
             that the @overloaded.module does not hook the arguments.
             """
-            print("Log function torch.add")
+            print(f"Log function torch.add")
             return x + y
 
         # Just register it using the module variable
@@ -93,7 +93,7 @@ class LoggingTensor(AbstractTensor):
             hook arguments, ie all the LoggingTensor are replaced with
             their child attribute
             """
-            print("Log function torch.mul")
+            print(f"Log function torch.mul")
             return x * y
 
         # Just register it using the module variable
@@ -110,7 +110,7 @@ class LoggingTensor(AbstractTensor):
             @overloaded.module
             def functional(module):
                 def relu(x):
-                    print("Log function torch.nn.functional.relu")
+                    print(f"Log function torch.nn.functional.relu")
                     return x * (x.child > 0)
 
                 module.relu = relu
@@ -128,7 +128,7 @@ class LoggingTensor(AbstractTensor):
         the overloading
         """
         cmd, _, args, kwargs = command
-        print("Default log", cmd)
+        print(f"Default log", cmd)
 
     @staticmethod
     def simplify(worker: AbstractWorker, tensor: "LoggingTensor") -> tuple:

@@ -74,34 +74,34 @@ def create_sandbox(gbs, verbose=True, download_data=True):
             ptr = batch.send(workers[n_batches - 1])
             ptr.child.garbage_collect_data = False
 
-    print("Setting up Sandbox...")
+    print(f"Setting up Sandbox...")
 
     if verbose:
-        print("\t- Hooking PyTorch")
+        print(f"\t- Hooking PyTorch")
     hook = TorchHook(torch)
 
     if verbose:
-        print("\t- Creating Virtual Workers:")
-        print("\t\t- bob")
+        print(f"\t- Creating Virtual Workers:")
+        print(f"\t\t- bob")
     bob = VirtualWorker(hook, id="bob")
     if verbose:
-        print("\t\t- theo")
+        print(f"\t\t- theo")
     theo = VirtualWorker(hook, id="theo")
     if verbose:
-        print("\t\t- jason")
+        print(f"\t\t- jason")
     jason = VirtualWorker(hook, id="jason")
     if verbose:
-        print("\t\t- alice")
+        print(f"\t\t- alice")
     alice = VirtualWorker(hook, id="alice")
     if verbose:
-        print("\t\t- andy")
+        print(f"\t\t- andy")
     andy = VirtualWorker(hook, id="andy")
     if verbose:
-        print("\t\t- jon")
+        print(f"\t\t- jon")
     jon = VirtualWorker(hook, id="jon")
 
     if verbose:
-        print("\tStoring hook and workers as global variables...")
+        print(f"\tStoring hook and workers as global variables...")
     gbs["hook"] = hook
     gbs["bob"] = bob
     gbs["theo"] = theo
@@ -115,32 +115,32 @@ def create_sandbox(gbs, verbose=True, download_data=True):
     if download_data:  # pragma: no cover
 
         if verbose:
-            print("\tLoading datasets from SciKit Learn...")
-            print("\t\t- Boston Housing Dataset")
+            print(f"\tLoading datasets from SciKit Learn...")
+            print(f"\t\t- Boston Housing Dataset")
         boston = load_sklearn(load_boston, *["#boston", "#housing", "#boston_housing"])
         if verbose:
-            print("\t\t- Diabetes Dataset")
+            print(f"\t\t- Diabetes Dataset")
         diabetes = load_sklearn(load_diabetes, *["#diabetes"])
         if verbose:
-            print("\t\t- Breast Cancer Dataset")
+            print(f"\t\t- Breast Cancer Dataset")
         breast_cancer = load_sklearn(load_breast_cancer)
         if verbose:
-            print("\t- Digits Dataset")
+            print(f"\t- Digits Dataset")
         digits = load_sklearn(load_digits)
         if verbose:
-            print("\t\t- Iris Dataset")
+            print(f"\t\t- Iris Dataset")
         iris = load_sklearn(load_iris)
         if verbose:
-            print("\t\t- Wine Dataset")
+            print(f"\t\t- Wine Dataset")
         wine = load_sklearn(load_wine)
         if verbose:
-            print("\t\t- Linnerud Dataset")
+            print(f"\t\t- Linnerud Dataset")
         linnerud = load_sklearn(load_linnerud)
 
         workers = [bob, theo, jason, alice, andy, jon]
 
         if verbose:
-            print("\tDistributing Datasets Amongst Workers...")
+            print(f"\tDistributing Datasets Amongst Workers...")
         distribute_dataset(boston[0], workers)
         distribute_dataset(boston[1], workers)
         distribute_dataset(diabetes[0], workers)
@@ -157,11 +157,11 @@ def create_sandbox(gbs, verbose=True, download_data=True):
         distribute_dataset(linnerud[1], workers)
 
     if verbose:
-        print("\tCollecting workers into a VirtualGrid...")
+        print(f"\tCollecting workers into a VirtualGrid...")
     _grid = VirtualGrid(*gbs["workers"])
     gbs["grid"] = _grid
 
-    print("Done!")
+    print(f"Done!")
 
 
 def hook(gbs):

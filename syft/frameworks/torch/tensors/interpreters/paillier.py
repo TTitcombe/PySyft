@@ -18,7 +18,7 @@ class PaillierTensor(AbstractTensor):
             id: An optional string or integer id of the PaillierTensor.
         """
         super().__init__(id=id, owner=owner, tags=tags, description=description)
-        print("creating paillier tensor 2")
+        print(f"creating paillier tensor 2")
 
     def encrypt(self, public_key):
         """This method will encrypt each value in the tensor using Paillier
@@ -236,7 +236,7 @@ class PaillierTensor(AbstractTensor):
             Tensors, so compared to the @overloaded.method, you see
             that the @overloaded.module does not hook the arguments.
             """
-            print("Log function torch.add")
+            print(f"Log function torch.add")
             return x + y
 
         # Just register it using the module variable
@@ -250,7 +250,7 @@ class PaillierTensor(AbstractTensor):
             Tensors, so compared to the @overloaded.method, you see
             that the @overloaded.module does not hook the arguments.
             """
-            print("Log function torch.mul")
+            print(f"Log function torch.mul")
             return x * y
 
         # Just register it using the module variable

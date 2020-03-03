@@ -171,7 +171,7 @@ class WebsocketServerWorker(VirtualWorker, FederatedClient):
             )
 
         asyncio.get_event_loop().run_until_complete(start_server)
-        print("Serving. Press CTRL-C to stop.")
+        print(f"Serving. Press CTRL-C to stop.")
         try:
             asyncio.get_event_loop().run_forever()
         except KeyboardInterrupt:

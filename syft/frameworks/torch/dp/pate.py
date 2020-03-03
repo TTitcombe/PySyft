@@ -124,7 +124,7 @@ def logmgf_exact(q, priv_eps, l):
         try:
             log_t = math.log(t)
         except ValueError:
-            print("Got ValueError in math.log for values :" + str((q, priv_eps, l, t)))
+            print(f"Got ValueError in math.log for values : {str((q, priv_eps, l, t))}")
             log_t = priv_eps * l
     else:
         log_t = priv_eps * l
@@ -156,7 +156,7 @@ def sens_at_k(counts, noise_eps, l, k):
   """
     counts_sorted = sorted(counts, reverse=True)
     if 0.5 * noise_eps * l > 1:
-        print("l too large to compute sensitivity")
+        print(f"l too large to compute sensitivity")
         return 0
     # Now we can assume that at k, gap remains positive
     # or we have reached the point where logmgf_exact is
@@ -260,7 +260,7 @@ def perform_analysis(teacher_preds, indices, noise_eps, delta=1e-5, moments=8, b
     # print("Epsilon = " + str(min(eps_list_nm)) + ".")
     if min(eps_list_nm) == eps_list_nm[-1]:
         print(
-            "Warning: May not have used enough values of l. Increase 'moments' variable and run again."
+            f"Warning: May not have used enough values of l. Increase 'moments' variable and run again."
         )
 
     # Data independent bound, as mechanism is
@@ -322,7 +322,7 @@ def logmgf_exact_torch(q, priv_eps, l):
 
         except ValueError:
 
-            print("Got ValueError in math.log for values :" + str((q, priv_eps, l, t)))
+            print(f"Got ValueError in math.log for values : {str((q, priv_eps, l, t))}")
             log_t = priv_eps * l
     else:
 
@@ -398,7 +398,7 @@ def sens_at_k_torch(counts, noise_eps, l, k):
 
     if 0.5 * noise_eps * l > 1:
 
-        print("l too large to compute sensitivity")
+        print(f"l too large to compute sensitivity")
         return 0
 
     if counts[0] < counts[1] + k:
