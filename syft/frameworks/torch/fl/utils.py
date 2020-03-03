@@ -23,7 +23,7 @@ def extract_batches_per_worker(federated_train_loader: sy.FederatedDataLoader):
 
     for batch_idx, (data, target) in enumerate(federated_train_loader):
         if batch_idx % logging_interval == 0:
-            logger.debug("Extracted %s batches from federated_train_loader", batch_idx)
+            logger.debug(f"Extracted {batch_idx} batches from federated_train_loader")
         batches[data.location].append((data, target))
 
     return batches

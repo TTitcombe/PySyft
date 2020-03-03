@@ -144,7 +144,7 @@ def dataset_federate(dataset, workers):
     data_loader = torch.utils.data.DataLoader(dataset, batch_size=data_size)
     for dataset_idx, (data, targets) in enumerate(data_loader):
         worker = workers[dataset_idx % len(workers)]
-        logger.debug("Sending data to worker %s", worker.id)
+        logger.debug(f"Sending data to worker {worker.id}")
         data = data.send(worker)
         targets = targets.send(worker)
         datasets.append(BaseDataset(data, targets))  # .send(worker)

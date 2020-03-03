@@ -43,12 +43,10 @@ class TFEWorker:
             self._server_process = subprocess.Popen(launch_cmd.split(" "))
         else:
             logger.info(
-                "If not done already, please launch the following "
-                "command in a terminal on host %s: '%s'\n"
-                "This can be done automatically in a local subprocess by "
-                "setting `auto_managed=True` when instantiating a TFEWorker.\n",
-                self.host,
-                launch_cmd,
+                f"If not done already, please launch the following "
+                f"command in a terminal on host {self.host}: '{launch_cmd}'\n"
+                f"This can be done automatically in a local subprocess by "
+                f"setting `auto_managed=True` when instantiating a TFEWorker.\n"
             )
 
     def stop(self):
@@ -68,7 +66,7 @@ class TFEWorker:
             self._server_process.communicate()
             self._server_process = None
         else:
-            logger.info("Please terminate the process on host '%s'.", self.host)
+            logger.info(f"Please terminate the process on host '{self.host}'.")
 
     def connect_to_model(self, input_shape, output_shape, cluster, sess=None):
         """

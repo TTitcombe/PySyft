@@ -91,7 +91,7 @@ class WebsocketClientWorker(BaseWorker):
         """Forwards a message to the WebsocketServerWorker"""
         response = self._forward_to_websocket_server_worker(message)
         if not self.ws.connected:
-            logger.warning("Websocket connection closed (worker: %s)", self.id)
+            logger.warning(f"Websocket connection closed (worker: {self.id})")
             self.ws.shutdown()
             time.sleep(0.1)
             # Avoid timing out on the server-side
@@ -101,7 +101,7 @@ class WebsocketClientWorker(BaseWorker):
             response = self._forward_to_websocket_server_worker(message)
             if not self.ws.connected:
                 raise RuntimeError(
-                    "Websocket connection closed and creation of new connection failed."
+                    f"Websocket connection closed and creation of new connection failed."
                 )
         return response
 
