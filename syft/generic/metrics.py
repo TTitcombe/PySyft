@@ -35,7 +35,7 @@ class NetworkMonitor:
         """
         capture_output = []
         if interface is None:
-            raise Exception("Please provide the interface used.")
+            raise Exception(f"Please provide the interface used.")
         else:
             capture = pyshark.LiveCapture(
                 interface=interface,
@@ -63,9 +63,9 @@ class NetworkMonitor:
                 "Please choose an index within the total number of packets captured by get_packets."
             )
         elif capture_input is None:
-            raise Exception("Please input the capture_output from get_packets.")
+            raise Exception(f"Please input the capture_output from get_packets.")
         elif not isinstance(index, int):
-            raise Exception("The index passed is not an integer.")
+            raise Exception(f"The index passed is not an integer.")
         else:
             length = len(capture_input)
             if index < length:
@@ -73,6 +73,6 @@ class NetworkMonitor:
                     packet = capture_input[index]
                     return packet.pretty_print()
                 except:
-                    raise Exception("Something went wrong when retrieving packet data.")
+                    raise Exception(f"Something went wrong when retrieving packet data.")
             else:
-                raise Exception("The index given is not valid.")
+                raise Exception(f"The index given is not valid.")
