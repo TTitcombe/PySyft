@@ -6,3 +6,10 @@ build-backend = "setuptools.build_meta"
 [tool.read_version.version]
 path     = ["src/syft/VERSION"]
 variable = "__version__"
+
+[tool.documatic]
+name = "syft"
+docdir = "."
+srcdir = "src/syft"
+package = "syft"
+
