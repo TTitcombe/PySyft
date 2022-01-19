@@ -1,3 +1,4 @@
+<!---Documatic-section-fixed: top1-start--->
 <h1 align="center">
 
   <br>
@@ -32,25 +33,8 @@ Most software libraries let you compute over the information you own and see ins
 
 The Syft ecosystem seeks to change this system, allowing you to write software which can compute over information you do not own on machines you do not have (total) control over. This not only includes servers in the cloud, but also personal desktops, laptops, mobile phones, websites, and edge devices. Wherever your data wants to live in your ownership, the Syft ecosystem exists to help keep it there while allowing it to be used privately for computation.
 
-## 0.5.0 Release
-
-The current stable release is `0.5.0` which is available on:
-
-- [PyPI](https://pypi.org/project/syft/)
-- [Docker Hub](https://hub.docker.com/u/openmined)
-
-For many use cases you can simply use:
-
-```
-$ pip install syft
-```
-
-If you are developing against this version please use the [`syft_0.5.0`](https://github.com/OpenMined/pysyft/tree/syft_0.5.0) branch.
-
-## Examples
-
-The examples inside the `/packages/syft/examples/` folder are currently compatible with `0.5.0` however we will be updating and moving examples down to the root `/notebooks` folder in the `dev` branch as we begin work on `0.6.0`.
-
+<!---Documatic-section-fixed: top1-end--->
+<!---Documatic-section-fixed: top2-start--->
 ## Mono Repo 🚝
 
 This repo contains multiple projects which work together, namely PySyft and PyGrid.
@@ -94,25 +78,34 @@ PySyft has also been explained in videos on YouTube:
 - [PriCon Sep 2020 Duet Demo](https://www.youtube.com/watch?v=DppXfA6C8L8&ab_channel=OpenMined)
 - [Introduction to Privacy-Preserving AI using PySyft by @iamtrask](https://www.youtube.com/watch?v=NJBBE_SN90A)
 
-## Pre-Installation
+<!---Documatic-section-fixed: top2-end--->
+<!---Documatic-section-fixed: top3-start--->
+### Duet
 
-PySyft is available on PyPI and Conda.
+<a href="https://github.com/OpenMined/PySyft/tree/main/packages/syft/examples/duet"><img src="https://raw.githubusercontent.com/OpenMined/PySyft/main/packages/syft/docs/img/logo_duet.png" alt="PySyft" width="350"></a>
 
-We recommend that you install PySyft within a virtual environment like
-[Conda](https://docs.anaconda.com/anaconda/user-guide/getting-started/),
-due to its ease of use. If you are using Windows, we suggest installing
-[Anaconda and using the Anaconda
-Prompt](https://docs.anaconda.com/anaconda/user-guide/getting-started/) to
-work from the command line.
+Duet is a peer-to-peer tool within PySyft that provides a research-friendly API for a Data Owner to privately expose their data, while a Data Scientist can access or manipulate the data on the owner's side through a zero-knowledge access control mechanism. It's designed to lower the barrier between research and privacy-preserving mechanisms, so that scientific progress can be made on data that is currently inaccessible or tightly controlled. **The main benefit of using Duet is that allows you to get started using PySyft, without needing to manage a full PyGrid deployment. It is the simplest path to using Syft, without needing to install anything (except Syft 😉).**
 
-```bash
-$ conda create -n pysyft python=3.9
-$ conda activate pysyft
-$ conda install jupyter notebook
+You can find all [Duet examples](https://github.com/OpenMined/PySyft/tree/main/packages/syft/examples/duet) in the `examples/duet` folder.
+<!---Documatic-section-fixed: top3-end--->
+
+<!---Documatic-section-group: helloworld-start--->
+<!---Documatic-section-helloworld: setup-start--->
+
+## Getting started
+
+### Requirements
+
+* Syft is compatible with Python 3.7 and above
+*  Run `pip install -e .` in the directory to install
+package locally
+* Alternatively, install globally from pypi with
+
+```
+pip install syft
 ```
 
-## Version Support
-
+<!---Documatic-section-fixed: inplace-start--->
 We support **Linux**, **MacOS** and **Windows** and the following Python and Torch versions.
 Older versions may work, however we have stopped testing and supporting them.
 
@@ -121,42 +114,154 @@ Older versions may work, however we have stopped testing and supporting them.
 | 3.7        | ✅  | ✅  | ✅  |
 | 3.8        | ✅  | ✅  | ✅  |
 | 3.9        | ➖  | ✅  | ✅  |
+<!---Documatic-section-fixed: inplace-start--->
 
-## Installation
+## Getting started
 
-### Pip
+Syft has the following CLI commands:
 
-```bash
-$ pip install syft
+<!---Documatic-note: Functions could not be resolved - TODO summaries to be generated--->
+* `syft-device` runs `syft.grid.example_nodes.device.run`
+* `syft-domain` runs `syft.grid.example_nodes.domain.run`
+* `syft-network` runs `syft.grid.example_nodes.network.run`
+* `syft-proto` runs `syft.protobuf_setuptools.run`
+
+Run a CLI command in a terminal to execute.
+
+
+<!---Documatic-section-helloworld: setup-end--->
+
+<!---Documatic-section-group: overview-start--->
+
+## Code Overview
+
+The Syft codebase has a 5-deep folder structure, with 463 python files in total.
+
+```
+syft
+├── ast
+├── core
+├── grid
+├── img
+├── lib
+└── proto
 ```
 
-This will auto-install PyTorch and other dependencies as required to run the
-examples and tutorials. For more information on building from source see the contribution guide [here](https://github.com/OpenMined/PySyft/blob/main/packages/syft/CONTRIBUTING.md).
+### Entrypoints
 
-## Documentation
+There are 17 source code objects
+in top-level `__main__`/`__init__`.
+They are broken down into the following modules:
 
-Coming soon! Until then, please view the Examples below.
+* `syft.core` has 12 entrypoints
+* `syft.grid` has 3 entrypoints
+* `syft.experimental_flags` has 1 entrypoints
+* `syft.registry` has 1 entrypoints
 
-## Examples
+<!---Documatic-section-overview: classes-start--->
 
-A comprehensive list of examples can be found [here](https://github.com/OpenMined/PySyft/tree/main/packages/syft/examples).
+### Classes
 
-These tutorials cover a variety of Python libraries for data science and machine learning.
+Some important Syft classes include:
 
-All the examples can be played with by launching a Jupyter Notebook and navigating to the `examples` folder.
+#### Node
 
-```bash
-$ jupyter notebook
+```
+syft.core.io.address.Address
+└──syft.core.node.abstract.node.AbstractNode
+   └──syft.core.node.common.node.Node
+      ├──syft.core.node.device.device.Device
+      ├──syft.core.node.domain.domain.Domain
+      └──syft.core.node.vm.vm.VirtualMachine
 ```
 
-### Duet
+<!---Documatic-section-code: f181ca-packages/syft/src/syft/core/node/common/node.py-102-131--->
+Basic class for a syft node behavior, explicit purpose node will
+inherit this class (e.g., Device, Domain, Network, and VirtualMachine).
+Each node is identified by an id of type ID and a name of type string.
 
-<a href="https://github.com/OpenMined/PySyft/tree/main/packages/syft/examples/duet"><img src="https://raw.githubusercontent.com/OpenMined/PySyft/main/packages/syft/docs/img/logo_duet.png" alt="PySyft" width="350"></a>
+```python
+class Node(AbstractNode):
+    client_type = ClientT
+    child_type_client_type = ClientT
+    ChildT = TypeVar("ChildT", bound="Node")
+    child_type = ChildT
+    signing_key: Optional[SigningKey]
+    verify_key: Optional[VerifyKey]
 
-Duet is a peer-to-peer tool within PySyft that provides a research-friendly API for a Data Owner to privately expose their data, while a Data Scientist can access or manipulate the data on the owner's side through a zero-knowledge access control mechanism. It's designed to lower the barrier between research and privacy-preserving mechanisms, so that scientific progress can be made on data that is currently inaccessible or tightly controlled. **The main benefit of using Duet is that allows you to get started using PySyft, without needing to manage a full PyGrid deployment. It is the simplest path to using Syft, without needing to install anything (except Syft 😉).**
+    def __init__(
+        self,
+        name: Optional[str] = None,
+        network: Optional[Location] = None,
+        domain: Optional[Location] = None,
+        device: Optional[Location] = None,
+        vm: Optional[Location] = None,
+        signing_key: Optional[SigningKey] = None,
+        verify_key: Optional[VerifyKey] = None,
+        TableBase: Any = None,
+        db_engine: Any = None,
+    )
+```
 
-You can find all [Duet examples](https://github.com/OpenMined/PySyft/tree/main/packages/syft/examples/duet) in the `examples/duet` folder.
+#### Client
 
+```
+syft.core.common.node.client.Client
+├──syft.core.node.device.client.DeviceClient
+├──syft.core.node.domain.client.DomainClient
+├──syft.core.node.network.client.NetworkClient
+└──syft.core.node.vm.client.VirtualMachineClient 
+```
+
+<!---Documatic-section-code: f181ca-packages/syft/src/syft/core/node/common/client.py-50-70--->
+Client is an incredibly powerful abstraction in Syft. We assume that,
+no matter where a client is, it can figure out how to communicate with
+the Node it is supposed to point to. If I send you a client I have
+with all of the metadata in it, you should have all the information
+you need to know to interact with a node (although you might not
+have permissions - clients should not store private keys).
+
+```python
+@serializable()
+class Client(AbstractNodeClient):
+    def __init__(
+        self,
+        name: Optional[str],
+        routes: List[Route],
+        network: Optional[Location] = None,
+        domain: Optional[Location] = None,
+        device: Optional[Location] = None,
+        vm: Optional[Location] = None,
+        signing_key: Optional[SigningKey] = None,
+        verify_key: Optional[VerifyKey] = None,
+        version: Optional[str] = None,
+    )
+```
+
+<!---Documatic-section-overview: classes-end--->
+
+
+<!---Documatic-section-group: overview-end--->
+
+<!---Documatic-section-group: concept-start--->
+## Concepts
+<!---Documatic-section-group: concept-end--->
+
+<!---Documatic-section-group: helloworld-end--->
+
+<!---Documatic-section-group: dev-start--->
+
+
+## Developers
+<!---Documatic-section-dev: setup-start--->
+* Tests are present in `tests/` (uses pytest)
+* No CI/CD config files are present in this repo
+
+<!---Documatic-section-dev: setup-end--->
+
+<!---Documatic-section-group: dev-end--->
+
+<!---Documatic-section-fixed: bottom1-start--->
 ## Contributing
 
 The guide for contributors can be found [here](https://github.com/OpenMined/PySyft/blob/main/packages/syft/CONTRIBUTING.md).
@@ -192,3 +297,4 @@ We are very grateful for contributions to PySyft from the following organization
 
 [Apache License 2.0](https://github.com/OpenMined/PySyft/blob/main/packages/syft/LICENSE)
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FOpenMined%2FPySyft.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FOpenMined%2FPySyft?ref=badge_large)
+<!---Documatic-section-fixed: bottom1-end--->
